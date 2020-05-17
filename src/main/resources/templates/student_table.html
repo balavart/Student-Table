@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <meta content="The site was developed by student Balaian Vardan" name="description">
+  <meta content="en" http-equiv="content-language">
+  <meta content="Vardan Balaian" name="author">
+  <meta content="copyright held by Balaian Vardan" name="copyright">
+  <title>Student list page</title>
+
+  <link rel="stylesheet" th:href="@{/css/elements.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/text.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/characteristics.css}" type="text/css">
+
+</head>
+<body>
+
+<h1 class="site_name_decor elements_border-radius carter-front">Student-Table</h1>
+
+<div class="content">
+
+  <table class="offer_table">
+
+    <caption class="legend_text frijole-front">Students</caption>
+
+    <thead>
+
+    <tr class="adding_block">
+
+      <th class="adding_text" colspan="1">Add a new student</th>
+
+      <th colspan="5">
+
+        <form method="get" th:action="addStudent">
+
+          <label for="surname">
+            <input class="adding_input carter-front elements_border-radius" id="surname"
+                   maxlength="50" minlength="2"
+                   name="surname"
+                   pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="Surname"
+                   required title="Use 2-50 Latin characters."
+                   type="text"/>
+          </label>
+
+          <label for="name">
+            <input class="adding_input carter-front elements_border-radius" id="name" maxlength="50"
+                   minlength="2"
+                   name="name"
+                   pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="Name"
+                   required title="Use 2-50 Latin characters."
+                   type="text"/>
+          </label>
+
+          <label for="patronymic">
+            <input class="adding_input carter-front elements_border-radius" id="patronymic"
+                   maxlength="50"
+                   minlength="2"
+                   name="patronymic"
+                   pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="Patronymic"
+                   required title="Use 2-50 Latin characters."
+                   type="text"/>
+          </label>
+
+          <label for="assessment"><input
+              class="adding_input short_width carter-front elements_border-radius" id="assessment"
+              maxlength="10"
+              minlength="1" name="assessment"
+              pattern="^(?:[1-9]|0[1-9]|10)$"
+              placeholder="Assessment"
+              required
+              title="Enter the amount in the format: 1-10"
+              type="text"/>
+          </label>
+
+          <label for="studentGroup"><input
+              class="adding_input short_width carter-front elements_border-radius" id="studentGroup"
+              maxlength="999"
+              minlength="1" name="studentGroup"
+              pattern="^([1-9][0-9]{0,2})$"
+              placeholder="Group"
+              required
+              title="Enter the amount in the format: 1-999"
+              type="text"/>
+          </label>
+
+          <button
+              class="adding_button short_width bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="reset">Reset
+          </button>
+          <button
+              class="adding_button short_width bungee-front adding_and_sorted_characteristics elements_border-radius"
+              id="dataSendButton" type="submit">Confirm
+          </button>
+
+        </form>
+
+      </th>
+    </tr>
+
+    <tr>
+
+      <th colspan="1">
+
+        <form autocomplete="off" method="post" th:action="sortBySurname">
+          <button
+              class="sorting_block bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="submit">Sort by surname
+          </button>
+        </form>
+
+      </th>
+
+      <th colspan="1">
+
+        <form autocomplete="off" method="post" th:action="sortByName">
+          <button
+              class="sorting_block bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="submit">Sort by name
+          </button>
+        </form>
+
+      </th>
+
+      <th colspan="1">
+
+        <form autocomplete="off" method="post" th:action="sortByPatronymic">
+          <button
+              class="sorting_block bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="submit">Sort by patronymic
+          </button>
+        </form>
+
+      </th>
+
+      <th colspan="1">
+
+        <form autocomplete="off" method="post" th:action="sortByAssessment">
+          <button
+              class="sorting_block bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="submit">Sort by assessment
+          </button>
+        </form>
+
+      </th>
+
+      <th colspan="1">
+
+        <form autocomplete="off" method="post" th:action="sortByStudentGroup">
+          <button
+              class="sorting_block bungee-front adding_and_sorted_characteristics elements_border-radius"
+              type="submit">Sort by student group
+          </button>
+        </form>
+
+      </th>
+
+    </tr>
+
+    <tr>
+
+      <th class="cell_header carter-front" style="width: 20%">
+        Surname
+      </th>
+
+      <th class="cell_header carter-front" style="width: 20%">
+        Name
+      </th>
+
+      <th class="cell_header carter-front" style="width:20%">
+        Patronymic
+      </th>
+
+      <th class="cell_header carter-front" style="width: 10%">
+        Assessment
+      </th>
+
+      <th class="cell_header carter-front" style="width: 10%">
+        Group
+      </th>
+
+      <th class="cell_header carter-front" style="width: 10%">
+      </th>
+
+    </tr>
+    </thead>
+
+    <tfoot>
+    <tr>
+      <th class="cell_header carter-front" colspan="9"><span th:utext="${studentsNumber}"></span>
+        Publication(s)
+      </th>
+    </tr>
+    </tfoot>
+
+    <tbody>
+
+    <th:block th:each="student : ${students}">
+      <tr class="cell_separator">
+
+        <td class="cell carter-front elements_border-radius"
+            th:utext="${student.getSurname()}"></td>
+        <td class="cell carter-front elements_border-radius" th:utext="${student.getName()}"></td>
+        <td class="cell carter-front elements_border-radius"
+            th:utext="${student.getPatronymic()}"></td>
+        <td class="cell carter-front elements_border-radius"
+            th:utext="${student.getAssessment()}"></td>
+        <td class="cell carter-front elements_border-radius"
+            th:utext="${student.getStudentGroup()}"></td>
+
+        <td>
+
+          <form autocomplete="off" method="post" th:action="deleteStudent">
+            <button
+                class="adding_button full_width bungee-front adding_and_sorted_characteristics elements_border-radius"
+                name="studentIdForDelete" th:value="${student.getId()}"
+                type="submit">Delete
+            </button>
+          </form>
+
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <form method="get" th:action="editStudent">
+
+          <td>
+            <label for="newSurname">
+              <input class="adding_input full_width carter-front elements_border-radius"
+                     id="newSurname" maxlength="50"
+                     minlength="2"
+                     name="newSurname"
+                     pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="New surname"
+                     title="Use 2-50 Latin characters."
+                     type="text"/>
+            </label>
+          </td>
+
+          <td>
+            <label for="newName">
+              <input class="adding_input full_width carter-front elements_border-radius"
+                     id="newName" maxlength="50"
+                     minlength="2"
+                     name="newName"
+                     pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="New name"
+                     title="Use 2-50 Latin characters."
+                     type="text"/>
+            </label>
+          </td>
+
+          <td>
+            <label for="newPatronymic">
+              <input class="adding_input full_width carter-front elements_border-radius"
+                     id="newPatronymic" maxlength="50"
+                     minlength="2"
+                     name="newPatronymic"
+                     pattern="^[a-zA-Z0-9_-№:,<>/-\s]{2,50}$" placeholder="New patronymic"
+                     title="Use 2-50 Latin characters."
+                     type="text"/>
+            </label>
+          </td>
+
+          <td>
+            <label for="newAssessment"><input
+                class="adding_input full_width carter-front elements_border-radius"
+                id="newAssessment"
+                maxlength="10"
+                minlength="1" name="newAssessment"
+                pattern="^(?:[1-9]|0[1-9]|10)$"
+                placeholder="New assessment"
+                title="Enter the amount in the format: 1-10"
+                type="text"/>
+            </label>
+          </td>
+
+          <td>
+            <label for="newStudentGroup"><input
+                class="adding_input full_width carter-front elements_border-radius"
+                id="newStudentGroup"
+                maxlength="999"
+                minlength="1" name="newStudentGroup"
+                pattern="^([1-9][0-9]{0,2})$"
+                placeholder="New Group"
+                title="Enter the amount in the format: 1-999"
+                type="text"/>
+            </label>
+          </td>
+
+          <td>
+            <button
+                class="adding_button full_width bungee-front adding_and_sorted_characteristics elements_border-radius"
+                type="reset">Reset
+            </button>
+            <button
+                class="adding_button full_width bungee-front adding_and_sorted_characteristics elements_border-radius"
+                name="studentIdForEditing" th:value="${student.getId()}"
+                type="submit">Edit
+            </button>
+          </td>
+
+        </form>
+
+      </tr>
+
+    </th:block>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+<footer class="footer frijole-front elements_border-radius"><p class="footer_text">Developed by
+  Balaian Vardan. 2020</p>
+</footer>
+
+
+</body>
+</html>

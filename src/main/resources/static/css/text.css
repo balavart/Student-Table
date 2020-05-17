@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Carter One";
+  src: url("fonts/CarterOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Frijole";
+  src: url("fonts/Frijole-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Bungee Shade";
+  src: url("fonts/BungeeShade-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Bungee";
+  src: url("fonts/Bungee-Regular.ttf");
+}
+
+.carter-front {
+  font-family: 'Carter One', serif;
+}
+
+.frijole-front {
+  font-family: 'Frijole', serif;
+}
+
+.bungee-front {
+  font-family: 'Bungee', serif;
+}
+
+.site_name_decor {
+  font-size: 7vw;
+  line-height: 100px;
+  color: #00303F;
+  text-shadow: 1px 1px 9px white;
+  background-color: #7A9D96;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 2%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: none;
+  border-bottom: none;
+}
+
+.legend_text {
+  font-size: 5vw;
+  color: #00303F;
+  text-shadow: 1px 1px 9px white;
+  letter-spacing: -2px;
+  height: 7vw;
+}
+
+.adding_text {
+  font-size: 1.5vw;
+  color: #00303F;
+  font-family: 'Bungee Shade', serif;
+}
