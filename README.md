@@ -1,5 +1,6 @@
 # Student-Table
 Implementation of a REST service for displaying a table of students
+#
 Распаковать архив с проектом в рабочую директорию IDEA
 В IDEA : File -> New -> Project from existing sources - выбрать корневую папку проекта
 Появится мастер импорта проекта в котором :
