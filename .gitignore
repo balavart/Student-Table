@@ -1,6 +1,4 @@
-##############################
-## Java
-##############################
+### Java ###
 .mtj.tmp/
 *.class
 *.jar
@@ -9,9 +7,7 @@
 *.nar
 hs_err_pid*
 
-##############################
-## Maven
-##############################
+### Maven ###
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -24,9 +20,8 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-##############################
-## IntelliJ
-##############################
+
+### IntelliJ IDEA ###
 out/
 .idea/
 .idea_modules/
@@ -36,3 +31,30 @@ out/
 /mvnw
 *.cmd
 *.md
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### Backup files ###
+*.bak
+
+### Logs ###
+*.log
+/.mvn/wrapper/maven-wrapper.properties
